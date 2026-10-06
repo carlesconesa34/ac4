@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Item Manager</title>
+	<meta name="author" content="Uriel Neves Silva">
+	<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+	<h1>Item Manager</h1>
+	<!-- Read all items section -->
+	<h2 id="read">Read all items</h2>
+	<button id="read-button" type="button">Show items</button>
+	<ul id="item-list"></ul>
+
+	<!-- Create item section -->
+	<h2 id="create">Create an item</h2>
+	<form id="create-form">
+		<label for="create-name">Name:</label>
+		<input id="create-name" type="text" required>
+		<button type="submit">Create</button>
+	</form>
+
+
+	<!-- Read one item section -->
+	<h2 id="read-one">Read one item</h2>
+	<form id="read-one-form">
+		<label for="read-one-id">ID:</label>
+		<input id="read-one-id" type="number" min="1" required>
+		<button type="submit">Search</button>
+	</form>
+	<p id="single-item"></p>
+
+	<!-- Update item section -->
+	<h2 id="update">Update an item</h2>
+	<form id="update-form">
+		<label for="update-id">ID:</label>
+		<input id="update-id" type="number" min="1" required>
+		<label for="update-name">New name:</label>
+		<input id="update-name" type="text" required>
+		<button type="submit">Update</button>
+	</form>
+
+	<!-- Delete item section -->
+	<h2 id="delete">Delete an item</h2>
+	<form id="delete-form">
+		<label for="delete-id">ID:</label>
+		<input id="delete-id" type="number" min="1" required>
+		<button type="submit">Delete</button>
+	</form>
+
+	<!-- Reset data section -->
+	<h2 id="reset">Reset data</h2>
+	<button id="reset-button" type="button">Reset</button>
+
+	<!-- Message area, shows status messages to the user using JavaScript -->
+	<p id="message"></p>
+
+	<script src="script.js"></script>
+</body>
+</html>
