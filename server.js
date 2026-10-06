@@ -1,24 +1,19 @@
-// ---------- IMPORTS ----------
 const express = require("express");
 const fs = require("fs");
 const path = require("path");
 
-// ---------- SETUP ----------
 const app = express();
 const PORT = 3000;
 const DATA_FILE = path.join(__dirname, "data.json");
 
-// Middleware: parse JSON bodies sent by the browser (POST/PUT)
+// Parse JSON bodies sent by the browser (POST/PUT)
 app.use(express.json());
 
-// Middleware: serve static files (index.html) from the "public" folder
+// Serve static files (index.html) from the "public" folder
 app.use(express.static("public"));
-
-// ---------- HELPERS ----------
 
 /**
  * Reads the saved items from the JSON data file.
- * @returns {Array<{id: number, name: string}>} The list of all items.
  */
 function readData() {
   const raw = fs.readFileSync(DATA_FILE, "utf8");
@@ -27,18 +22,14 @@ function readData() {
 
 /**
  * Writes the full item list back to the JSON data file.
- * @param {Array<{id: number, name: string}>} items - The items to save.
+ * @param items - The items to save.
  */
 function writeData(items) {
   fs.writeFileSync(DATA_FILE, JSON.stringify(items, null, 2));
 }
 
-// ---------- ROUTES (CRUD) ----------
-
 /**
  * Reads every item in storage.
- * @route GET /api/items
- * @returns {Array<{id: number, name: string}>} The item list.
  */
 app.get("/api/items", (req, res) => {
   try {
@@ -51,9 +42,6 @@ app.get("/api/items", (req, res) => {
 
 /**
  * Reads one item by its id.
- * @route GET /api/items/:id
- * @param {number} req.params.id - The unique item id.
- * @returns {Object} The item matching the requested id.
  */
 app.get("/api/items/:id", (req, res) => {
   const id = parseInt(req.params.id, 10);
@@ -68,10 +56,6 @@ app.get("/api/items/:id", (req, res) => {
 
 /**
  * Creates a new item in storage.
- * @route POST /api/items
- * @param {Object} req.body - The request body.
- * @param {string} req.body.name - The new item name.
- * @returns {Object} The newly created item.
  */
 app.post("/api/items", (req, res) => {
   const { name } = req.body;
@@ -94,11 +78,6 @@ app.post("/api/items", (req, res) => {
 
 /**
  * Updates the name for an existing item.
- * @route PUT /api/items/:id
- * @param {number} req.params.id - The item id to update.
- * @param {Object} req.body - The request body.
- * @param {string} req.body.name - The updated item name.
- * @returns {Object} The updated item.
  */
 app.put("/api/items/:id", (req, res) => {
   const id = parseInt(req.params.id, 10);
@@ -122,9 +101,6 @@ app.put("/api/items/:id", (req, res) => {
 
 /**
  * Deletes one item from storage.
- * @route DELETE /api/items/:id
- * @param {number} req.params.id - The item id to remove.
- * @returns {Object} The deleted item details.
  */
 app.delete("/api/items/:id", (req, res) => {
   const id = parseInt(req.params.id, 10);
@@ -143,8 +119,6 @@ app.delete("/api/items/:id", (req, res) => {
 
 /**
  * Restores the default sample data set.
- * @route POST /api/reset
- * @returns {Array<{id: number, name: string}>} The reset item list.
  */
 app.post("/api/reset", (req, res) => {
   const originalItems = [
@@ -156,7 +130,6 @@ app.post("/api/reset", (req, res) => {
   res.json(originalItems);
 });
 
-// ---------- START SERVER ----------
 /**
  * Starts the Express server and listens for requests.
  */

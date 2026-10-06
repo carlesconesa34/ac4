@@ -18,7 +18,7 @@ function clearItemList() {
 
 /**
  * Adds a single item to the items list on the page.
- * @param {{ id: number, name: string }} item - The item to display.
+ * @param item - The item to display.
  */
 function addItemToList(item) {
   const listItem = document.createElement("li");
@@ -54,8 +54,7 @@ async function readItems() {
 
 /**
  * Fetches one item by its id and shows the result in the detail area.
- * @param {number|string} id - The id of the item to fetch.
- * @returns {Promise<void>} Resolves after the item detail is displayed.
+ * @param id - The id of the item to fetch.
  */
 async function readOneItem(id) {
   const singleItem = document.getElementById("single-item");
@@ -76,8 +75,7 @@ async function readOneItem(id) {
 
 /**
  * Sends a new item to the API for creation.
- * @param {string} name - The name of the item to create.
- * @returns {Promise<void>} Resolves after the API responds.
+ * @param name - The name of the item to create.
  */
 async function createItem(name) {
   try {
@@ -100,9 +98,8 @@ async function createItem(name) {
 
 /**
  * Updates an existing item in the API.
- * @param {number|string} id - The id of the item to update.
- * @param {string} name - The new name to save.
- * @returns {Promise<void>} Resolves after the update request finishes.
+ * @param id - The id of the item to update.
+ * @param name - The new name to save.
  */
 async function updateItem(id, name) {
   try {
@@ -125,8 +122,7 @@ async function updateItem(id, name) {
 
 /**
  * Deletes an item with the matching id from the API.
- * @param {number|string} id - The id of the item to remove.
- * @returns {Promise<void>} Resolves after the delete request completes.
+ * @param id - The id of the item to remove.
  */
 async function deleteItem(id) {
   try {
@@ -147,7 +143,6 @@ async function deleteItem(id) {
 
 /**
  * Resets the local data to the starting sample list.
- * @returns {Promise<void>} Resolves after the reset request completes.
  */
 async function resetData() {
   try {
